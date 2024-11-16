@@ -64,6 +64,18 @@ html, body{
     background-size: cover;
 }
 
+#front-card-desktop{
+    background: transparent url('images/bg-card-front.png') no-repeat;
+}
+
+#back-card-desktop{
+    background: transparent url('images/bg-card-back.png') no-repeat;
+}
+
+
+
+
+
 @media (min-width: 768px){
     #backimgDesktop-container{
         display: block !important;
