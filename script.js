@@ -14,6 +14,14 @@ const $expMounth = document.querySelector("#cardholder-expdate");
 const $expYear = document.querySelector("#cardholder-mmyy");
 const $cvc = document.querySelector("#cardholder-cvc");
 
+/* CARD's Interative Details */
+
+numberCard.innerText = "0000 0000 0000 0000";
+nameCard.innerText = "Jane Appleseed";
+dateCardMM.innerText = "00";
+dateCardYY.innerText = "00";
+cvcCard.innerText = "000";
+
 const rules = {
   name: {
     presence: {
