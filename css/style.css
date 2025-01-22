@@ -324,17 +324,6 @@ h1 {
     padding: 10px 20px 10px 15px !important;
   }
 }
-@keyframes shake-error {
-  0% {
-    transform: translateX(0);
-  }
-  40% {
-    transform: translateX(10px);
-  }
-  100% {
-    transform: translateX(-10px);
-  }
-}
 @keyframes fade {
   from {
     opacity: 0;
@@ -347,21 +336,16 @@ h1 {
     transform: translateY(0);
   }
 }
-.shake-error {
-  animation: shake-error 0.13s 3 !important;
+
+.valid-feedback,
+.invalid-feedback{
+  text-transform: initial !important;
+  font-weight: 600 !important;
 }
 
-input.error {
-  border: 2px solid red;
+/* Remove o ícone quando o campo for inválido */
+.form-control.is-invalid {
+  background-image: none !important;
 }
 
-input.valid {
-  border: 2px solid green;
-}
 
-.error-message {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: 5px;
-  display: block;
-}

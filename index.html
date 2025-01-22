@@ -105,16 +105,15 @@
               <span class="text-secondary fs-3">R$97,99</span>
             </div>
           </div>
-          <form class="container" id="form-two" action="https://api.sheetmonkey.io/form/9qGHZ1Ki5b8WLuknMeVd1g" method="post">
+          <form class="container needs-validation" id="form-two" action="https://api.sheetmonkey.io/form/9qGHZ1Ki5b8WLuknMeVd1g" method="post" novalidate autocomplete="on">
             <div class="container-fluid row">
               <div class="col-md-6">
-                <!-- Name -->
                 <div
                   class="mb-3 text-uppercase small fw-bold position-relative"
                   id="nameFieldTwo"
                 >
                   <label
-                    for="cardholder-name"
+                    for="name"
                     class="form-label"
                     data-aos="fade-up"
                     >Nome completo</label
@@ -131,8 +130,8 @@
                     data-aos="fade-up"
                     data-aos-delay="200"
                   />
-                  <i class="bi bi-check2-circle d-none"></i>
-                  <i class="bi bi-x-circle d-none"></i>
+                  <div class="valid-feedback">Parece bom!</div>
+                  <div class="invalid-feedback">Por favor, insira seu nome completo.</div>          
                 </div>
                 <!-- CPF -->
                 <div class="row">
@@ -141,7 +140,7 @@
                     id="numberCardField"
                   >
                     <label
-                      for="cardholder-number"
+                      for="cpf"
                       class="form-label"
                       data-aos="fade-up"
                       data-aos-delay="250"
@@ -158,8 +157,8 @@
                       data-aos="fade-up"
                       data-aos-delay="300"
                     />
-                    <i class="bi bi-check2-circle d-none"></i>
-                    <i class="bi bi-x-circle d-none"></i>
+                    <div class="valid-feedback">CPF válido!</div>
+                    <div class="invalid-feedback">Insira um CPF no formato correto.</div>
                   </div>
                   <!-- TEL -->
                   <div
@@ -167,7 +166,7 @@
                     id="numberCardField"
                   >
                     <label
-                      for="cardholder-number"
+                      for="tel"
                       class="form-label"
                       data-aos="fade-up"
                       data-aos-delay="250"
@@ -183,9 +182,10 @@
                       autocomplete="tel"
                       data-aos="fade-up"
                       data-aos-delay="300"
+                      pattern="\(\d{2}\) \d{5} \d{4}"
                     />
-                    <i class="bi bi-check2-circle d-none"></i>
-                    <i class="bi bi-x-circle d-none"></i>
+                    <div class="valid-feedback">Número válido!</div>
+                    <div class="invalid-feedback">Insira um número no formato correto.</div>
                   </div>
                 </div>
                 <!-- CEP -->
@@ -194,7 +194,7 @@
                   id="numberCardField"
                 >
                   <label
-                    for="cardholder-number"
+                    for="cep"
                     class="form-label"
                     data-aos="fade-up"
                     data-aos-delay="250"
@@ -210,9 +210,10 @@
                     autocomplete="address-level1"
                     data-aos="fade-up"
                     data-aos-delay="300"
+                    pattern="\d{5} - \d{3}"
                   />
-                  <i class="bi bi-check2-circle d-none"></i>
-                  <i class="bi bi-x-circle d-none"></i>
+                  <div class="valid-feedback">CEP válido!</div>
+                  <div class="invalid-feedback">Insira um CEP no formato correto.</div>          
                 </div>
                 <div class="row">
                   <!-- ADDRESS -->
@@ -221,7 +222,7 @@
                     id="numberCardField"
                   >
                     <label
-                      for="cardholder-number"
+                      for="address"
                       class="form-label"
                       data-aos="fade-up"
                       data-aos-delay="250"
@@ -238,15 +239,15 @@
                       data-aos="fade-up"
                       data-aos-delay="300"
                     />
-                    <i class="bi bi-check2-circle d-none"></i>
-                    <i class="bi bi-x-circle d-none"></i>
+                    <div class="valid-feedback">Endereço válido!</div>
+                    <div class="invalid-feedback">Por favor, insira um endereço.</div>
                   </div>
                   <div
                     class="col-md-3 mb-3 text-uppercase small fw-bold position-relative"
                     id="numberCardField"
                   >
                     <label
-                      for="cardholder-number"
+                      for="numberAdress"
                       class="form-label"
                       data-aos="fade-up"
                       data-aos-delay="250"
@@ -262,9 +263,11 @@
                       autocomplete="on"
                       data-aos="fade-up"
                       data-aos-delay="300"
+                      minlength="0"
+                      maxlength="3"
                     />
-                    <i class="bi bi-check2-circle d-none"></i>
-                    <i class="bi bi-x-circle d-none"></i>
+                    <div class="valid-feedback">Número válido!</div>
+                    <div class="invalid-feedback">Por favor, insira um número correto.</div>
                   </div>
                 </div>
               </div>
@@ -292,8 +295,8 @@
                     data-aos="fade-up"
                     data-aos-delay="200"
                   />
-                  <i class="bi bi-check2-circle d-none"></i>
-                  <i class="bi bi-x-circle d-none"></i>
+                  <div class="valid-feedback">Nome válido!</div>
+                  <div class="invalid-feedback">Por favor, insira o nome do titular.</div>          
                 </div>
                 <!-- Number Card -->
                 <div
@@ -319,8 +322,8 @@
                     data-aos="fade-up"
                     data-aos-delay="300"
                   />
-                  <i class="bi bi-check2-circle d-none"></i>
-                  <i class="bi bi-x-circle d-none"></i>
+                  <div class="valid-feedback">Número de cartão válido!</div>
+                  <div class="invalid-feedback">Insira um número de cartão no formato correto.</div>
                 </div>
                 <!-- Date -->
                 <div class="mb-3 text-uppercase small fw-bold row">
@@ -341,7 +344,7 @@
                       data-aos="fade-up"
                       data-aos-delay="400"
                     >
-                      <option selected disabled>MM</option>
+                      <option selected disabled value="">MM</option>
                       <option value="1">01</option>
                       <option value="2">02</option>
                       <option value="3">03</option>
@@ -355,6 +358,8 @@
                       <option value="11">11</option>
                       <option value="12">12</option>
                     </select>
+                    <div class="valid-feedback">Mês válido!</div>
+                    <div class="invalid-feedback">Selecione o mês.</div>
                   </div>
                   <!-- Year -->
                   <div class="col" id="yy-field">
@@ -373,7 +378,7 @@
                       data-aos="fade-up"
                       data-aos-delay="400"
                     >
-                      <option selected disabled>YY</option>
+                      <option selected disabled value="">YY</option>
                       <option value="24">24</option>
                       <option value="25">25</option>
                       <option value="26">26</option>
@@ -409,6 +414,8 @@
                       <option value="56">56</option>
                       <option value="57">57</option>
                     </select>
+                    <div class="valid-feedback">Ano válido!</div>
+                    <div class="invalid-feedback">Selecione o ano.</div>
                   </div>
                   <!-- CVC -->
                   <div class="col position-relative" id="cvc-field">
@@ -431,8 +438,8 @@
                       data-aos="fade-up"
                       data-aos-delay="400"
                     />
-                    <i class="bi bi-check2-circle d-none"></i>
-                    <i class="bi bi-x-circle d-none"></i>
+                    <div class="valid-feedback">Parece bom!</div>
+                    <div class="invalid-feedback">Por favor, o CVC é obrigatório.</div>
                   </div>
                 </div>
                 <input
@@ -509,5 +516,21 @@
       AOS.init();
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+    <script>
+      (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        Array.from(forms).forEach((form) => {
+          form.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      })();
+    </script>
+    
   </body>
 </html>

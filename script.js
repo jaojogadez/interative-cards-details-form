@@ -1,5 +1,6 @@
 /* FORM's ELEMENTs PESSOAL INFO*/
 const $form = document.querySelector("form");
+const $inputs = document.querySelectorAll("form input, form select");
 const $name = document.querySelector("#name");
 const $cpf = document.querySelector("#cpf");
 const $tel = document.querySelector("#tel");
@@ -15,6 +16,11 @@ const $expYear = document.querySelector("#cardholder-mmyy");
 const $cvc = document.querySelector("#cardholder-cvc");
 
 /* CARD's Interative Details */
+const numberCard = document.getElementById("placeholder-card");
+const nameCard = document.getElementById("name");
+const dateCardMM = document.getElementById("dateMM");
+const dateCardYY = document.getElementById("dateYY");
+const cvcCard = document.getElementById("cvc");
 
 numberCard.innerText = "0000 0000 0000 0000";
 nameCard.innerText = "Jane Appleseed";
@@ -152,8 +158,49 @@ $form.addEventListener("submit", (event) => {
   } else {
     alert("Form Enviado!");
   }
-  
 });
+
+$numberCard.addEventListener("input", () => {
+  const numberCardFormated = onlyNumbers($numberCard.value.trim());
+  const regexNumberCard = /(\d{4})(?=\d)/g;
+  const formatNumberCard = numberCardFormated.replace(regexNumberCard, "$1 ").slice(0, 19);
+  $numberCard.value = formatNumberCard;
+});
+
+$cpf.addEventListener("input", () => {
+  const numberCPFformated = onlyNumbers($cpf.value.trim()).slice(0, 11);
+  const formatCPF = numberCPFformated.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{2})$/, "$1-$2");
+  $cpf.value = formatCPF;
+  validateInput($cpf)
+});
+
+let validateInput = (input) => {
+  const value = onlyNumbers(input.value)
+  const isValid = value.length === 11
+  
+  const validFeedback = input.nextElementSibling;
+  const invalidFeedback = validFeedback.nextElementSibling;
+
+  if (isValid) {
+    validFeedback.style.display = "block";
+    invalidFeedback.style.display = "none";
+    input.style.borderColor = "gren";
+    input.classList.remove("is-invalid");
+    input.classList.add("is-valid");
+    input.classList.add("valid-background")
+  }else{
+    validFeedback.style.display = "none";
+    invalidFeedback.style.display = "block";
+    input.style.borderColor = "red";
+    input.classList.add("is-invalid");
+    input.classList.remove("is-valid");
+    input.classList.remove("valid-background")
+  }
+}
+
+let onlyNumbers = (value) => {
+  return value.replace(/\D/g, "");
+};
 
 /* TIMER's ELEMENT*/
 const $clock = document.getElementById("timer");
