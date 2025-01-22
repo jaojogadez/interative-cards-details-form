@@ -350,3 +350,18 @@ h1 {
 .shake-error {
   animation: shake-error 0.13s 3 !important;
 }
+
+input.error {
+  border: 2px solid red;
+}
+
+input.valid {
+  border: 2px solid green;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  display: block;
+}
