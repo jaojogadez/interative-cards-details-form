@@ -171,12 +171,26 @@ $cpf.addEventListener("input", () => {
   const numberCPFformated = onlyNumbers($cpf.value.trim()).slice(0, 11);
   const formatCPF = numberCPFformated.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{2})$/, "$1-$2");
   $cpf.value = formatCPF;
-  validateInput($cpf)
+  validateInput($cpf, "cpf")
 });
 
-let validateInput = (input) => {
+$tel.addEventListener("input", () => {
+  let formatedTel = onlyNumbers($tel.value.trim().slice(0, 15)).replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1 $2")
+  $tel.value = formatedTel;
+  validateInput($tel, "tel")
+})
+
+const expectedLengths = {
+  cpf: 11,
+  tel: 11,
+  cep: 8,
+  num: 3
+}
+
+let validateInput = (input, type) => {
   const value = onlyNumbers(input.value)
-  const isValid = value.length === 11
+  const requireLenght = expectedLengths[type]
+  const isValid = value.length === requireLenght
   
   const validFeedback = input.nextElementSibling;
   const invalidFeedback = validFeedback.nextElementSibling;
@@ -184,17 +198,17 @@ let validateInput = (input) => {
   if (isValid) {
     validFeedback.style.display = "block";
     invalidFeedback.style.display = "none";
-    input.style.borderColor = "gren";
+    input.style.borderColor = "green";
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
-    input.classList.add("valid-background")
+    input.classList.add("valid-background");
   }else{
     validFeedback.style.display = "none";
     invalidFeedback.style.display = "block";
     input.style.borderColor = "red";
     input.classList.add("is-invalid");
     input.classList.remove("is-valid");
-    input.classList.remove("valid-background")
+    input.classList.remove("valid-background");
   }
 }
 
