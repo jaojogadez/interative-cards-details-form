@@ -42,10 +42,9 @@ const rules = {
   cpf: {
     presence: {
       allowEmpty: false,
-      message: "^O CPF é obrigatório",
     },
     format: {
-      pattern: /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/,
+      pattern: /^\d{3}\.\d{3}\.\d{3}-\d{2}$/,
       message: "^O CPF deve estar no formato 000.000.000-00",
     },
   },
@@ -55,8 +54,8 @@ const rules = {
       message: "^O telefone celular é obrigatório",
     },
     format: {
-      pattern: /^\(\d{2}\) \d{5}-\d{4}$/,
-      message: "^O telefone deve estar no formato (00) 00000-0000.",
+      pattern: /^\(\d{2}\) \d{5} \d{4}$/,
+      message: "^O telefone deve estar no formato (00) 00000 0000.",
     },
   },
   cep: {
@@ -97,8 +96,8 @@ const rules = {
       message: "^O número do cartão é obrigatório",
     },
     format: {
-      pattern: /^\d{16}$/,
-      message: "^O número do cartão deve ter exatamente 16 dígitos.",
+      pattern: /^(\d{4} ){3}\d{4}$/,
+      message: "^O número do cartão deve ter o formato 0000 0000 0000 0000.",
     },
   },
   expMounth: {
@@ -120,14 +119,13 @@ const rules = {
     },
     numericality: {
       onlyInteger: true,
-      greaterThanOrEqualTo: new Date().getFullYear(),
       message: "^O ano de expiração deve ser igual ou superior ao ano atual.",
     },
   },
   cvc: {
     presence: {
       allowEmpty: false,
-      message: "O CVC é obrigatório",
+      message: "^O CVC é obrigatório",
     },
     format: {
       pattern: /^\d{3}$/,
@@ -136,92 +134,78 @@ const rules = {
   },
 };
 
-$form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const values = {
-    name: $name.value,
-    cpf: $cpf.value,
-    tel: $tel.value,
-    cep: $cep.value,
-    address: $address.value,
-    addressNumber: $addressNumber.value,
-    cardName: $holder.value,
-    cardNumber: $numberCard.value,
-    expMounth: $expMounth.value,
-    expYear: $expYear.value,
-    cvc: $cvc.value,
-  };
-
-  const errors = validate(values, rules);
-  if (errors) {
-    console.log(errors);
-  } else {
-    alert("Form Enviado!");
-  }
-
-  console.log($expMounth.value)
-  console.log($expYear.value)
-});
-
-$expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth) )
+$expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth));
+$expYear.addEventListener("input", () => innerCard(dateCardYY, $expYear));
 
 let innerDateCard = (date, input) => {
-  const dateValue = input.value.padStart(2, "0")
-  date.textContent = dateValue
-}
+  date.textContent = input.value;
+};
 
-const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc]
-inputsNumber.forEach(input => {
+const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc];
+inputsNumber.forEach((input) => {
   input.addEventListener("input", () => {
-    input.value = onlyNumbers(input.value) 
+    input.value = onlyNumbers(input.value);
   });
-})
+});
 
-const inputsString = [$name, $address, $holder]
-inputsString.forEach(input => {
+const inputsString = [$name, $address, $holder];
+inputsString.forEach((input) => {
   input.addEventListener("input", () => {
-    input.value = onlyLetters(input.value)
-    validateInput(input, "minLetters", "string")
-  })
-})
+    input.value = onlyLetters(input.value);
+    validateInput(input, "minLetters", "string");
+  });
+});
 
 $numberCard.addEventListener("input", () => {
   const regexNumberCard = /(\d{4})(?=\d)/g;
-  const formatNumberCard = $numberCard.value.replace(regexNumberCard, "$1 ").slice(0, 19);
+  const formatNumberCard = $numberCard.value
+    .replace(regexNumberCard, "$1 ")
+    .slice(0, 19);
   $numberCard.value = formatNumberCard;
-  validateInput($numberCard, "card")
-  innerCard(numberCard, $numberCard)
+  validateInput($numberCard, "card");
+  innerCard(numberCard, $numberCard);
 });
 
-$holder.oninput = () => {innerCard(nameCard, $holder)}
-$cvc.oninput = () => {innerCard(cvcCard, $cvc)}
+$holder.oninput = () => {
+  innerCard(nameCard, $holder);
+};
+$cvc.oninput = () => {
+  innerCard(cvcCard, $cvc);
+};
 
 let innerCard = (card, input) => {
-  card.innerText = input.value
-}
+  card.innerText = input.value;
+};
 
 $cpf.addEventListener("input", () => {
-  let formatCPF = $cpf.value.slice(0, 11).replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{2})$/, "$1-$2");
+  let formatCPF = $cpf.value
+    .slice(0, 11)
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{2})$/, "$1-$2");
   $cpf.value = formatCPF;
-  validateInput($cpf, "cpf")
+  validateInput($cpf, "cpf");
 });
 
 $tel.addEventListener("input", () => {
-  let formatedTel = $tel.value.slice(0, 11).replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1 $2")
+  let formatedTel = $tel.value
+    .slice(0, 11)
+    .replace(/^(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d)/, "$1 $2");
   $tel.value = formatedTel;
-  validateInput($tel, "tel")
+  validateInput($tel, "tel");
 });
 
 $cep.addEventListener("input", () => {
-  let formatedCep = $cep.value.slice(0, 8).replace(/^(\d{5})(\d)/, "$1-$2")
-  $cep.value = formatedCep
-  validateInput($cep, "cep")
+  let formatedCep = $cep.value.slice(0, 8).replace(/^(\d{5})(\d)/, "$1-$2");
+  $cep.value = formatedCep;
+  validateInput($cep, "cep");
 });
 
-const numberEcvc = [$addressNumber, $cvc]
-numberEcvc.forEach(input => {
+const numberEcvc = [$addressNumber, $cvc];
+numberEcvc.forEach((input) => {
   input.addEventListener("input", () => {
-    validateInput(input, "num")
+    validateInput(input, "num");
   });
 });
 
@@ -231,19 +215,20 @@ const expectedLengths = {
   cep: 8,
   num: 3,
   minLetters: 10,
-  card: 16
-}
+  card: 16,
+  select: 2,
+};
 
 let validateInput = (input, type, cond) => {
-  const value = cond == "string" ? input.value : onlyNumbers(input.value)
-  const requireLenght = expectedLengths[type]
-  let isValid 
-  if(cond === "string"){
-    isValid = value.length > requireLenght
-  }else{
-    isValid = value.length === requireLenght
+  const value = cond == "string" ? input.value : onlyNumbers(input.value);
+  const requireLenght = expectedLengths[type];
+  let isValid;
+  if (cond === "string") {
+    isValid = value.length > requireLenght;
+  } else {
+    isValid = value.length === requireLenght;
   }
-  
+
   const validFeedback = input.nextElementSibling;
   const invalidFeedback = validFeedback.nextElementSibling;
 
@@ -254,7 +239,7 @@ let validateInput = (input, type, cond) => {
     input.classList.remove("is-invalid");
     input.classList.add("is-valid");
     input.classList.add("valid-background");
-  }else{
+  } else {
     validFeedback.style.display = "none";
     invalidFeedback.style.display = "block";
     input.style.borderColor = "red";
@@ -262,15 +247,16 @@ let validateInput = (input, type, cond) => {
     input.classList.remove("is-valid");
     input.classList.remove("valid-background");
   }
-}
+};
 
 let onlyNumbers = (value) => {
   return value.replace(/\D/g, "");
 };
 
 let onlyLetters = (string) => {
-  return string.replace(/[^A-Za-zÀ-ÿ\s]/gu ,"");
-}
+  return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
+};
+
 /* TIMER's ELEMENT*/
 const $clock = document.getElementById("timer");
 
@@ -308,3 +294,34 @@ const atualizarTempo = () => {
 
 intervalo = setInterval(atualizarTempo, 10);
 atualizarTempo();
+
+$form.addEventListener("submit", (event) => {
+  try {
+    event.preventDefault();
+    const values = {
+      name: $name.value.trim(),
+      cpf: $cpf.value.trim(),
+      tel: $tel.value.trim(),
+      cep: $cep.value.trim(),
+      address: $address.value.trim(),
+      addressNumber: $addressNumber.value.trim(),
+      cardName: $holder.value.trim(),
+      cardNumber: $numberCard.value.trim(),
+      expMounth: $expMounth.value.trim(),
+      expYear: $expYear.value.trim(),
+      cvc: $cvc.value.trim(),
+    };
+    console.log(values);
+
+
+
+    const errors = validate(values, rules);
+    if (errors) {
+      console.log(errors);
+    } else {
+      
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
