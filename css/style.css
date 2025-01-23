@@ -22,15 +22,15 @@ body {
 .alert {
   z-index: 9999;
 }
-#productName h3{
-    color: var(--Verydark);
+#productName h3 {
+  color: var(--Verydark);
 }
-#productName .text-dark{
-    color: var(--vender-red) !important;
-    text-decoration: line-through;
+#productName .text-dark {
+  color: var(--vender-red) !important;
+  text-decoration: line-through;
 }
-.bi-image{
-    font-size: 5em;
+.bi-image {
+  font-size: 5em;
 }
 /* Cards Configuration Start */
 #front-card,
@@ -116,71 +116,6 @@ select:focus {
   background-color: var(--purple);
 }
 /* Form configuration end */
-/* Error Message Start */
-.form-control-error {
-  border: 2px solid var(--Red-inputerrors) !important;
-  animation: shake-error 0.13s 3;
-}
-.form-control-error-submit {
-  border: 3px solid var(--Red-inputerrors) !important;
-  animation: shake-error 0.13s 3;
-}
-.form-control-error:focus {
-  border: 2px solid var(--Red-inputerrors) !important;
-}
-.form-message-error-name::after {
-  content: "Digite no mínimo 3 letras e somente letras serão aceitas";
-  color: var(--Red-inputerrors);
-  text-transform: initial;
-  letter-spacing: 1px;
-  font-size: 0.85em;
-}
-.form-message-error-null::after {
-  content: "Por favor, preencha o campo";
-  color: var(--Red-inputerrors);
-  text-transform: initial;
-  letter-spacing: 1px;
-  font-size: 0.85em;
-}
-.form-message-error-limit::after {
-  content: "O limite de caracteres é 16";
-  color: var(--Red-inputerrors);
-  text-transform: initial;
-  letter-spacing: 1px;
-  font-size: 0.85em;
-}
-.form-message-error-select::after {
-  content: "Selecione uma opção";
-  color: var(--Red-inputerrors);
-  text-transform: initial;
-  letter-spacing: 1px;
-  font-size: 0.65em;
-}
-/* Error Message End */
-/* Check Message Start */
-.form-control-check {
-  border: 2px solid var(--Green-inputerrors) !important;
-}
-.form-control-check:focus {
-  border: 2px solid var(--Green-inputerrors) !important;
-}
-.bi-check2-circle {
-  color: var(--Green-inputerrors);
-  position: absolute;
-  top: 2.2rem;
-  right: 10px;
-}
-.bi-x-circle {
-  color: var(--Red-inputerrors);
-  position: absolute;
-  top: 2.2rem;
-  right: 10px;
-}
-#cvc-field .bi-check2-circle,
-#cvc-field .bi-x-circle {
-  right: 23px;
-}
-/* Check Message End */
 h1 {
   letter-spacing: 3px;
   animation: fade 0.3s linear;
@@ -197,6 +132,11 @@ h1 {
 }
 #form-complete input {
   animation: fade 0.45s linear;
+}
+@media (min-width: 2000px) {
+  #productName{
+    transform: translateX(-80px);
+  }
 }
 @media (min-width: 1400px) {
   #backcard-content {
@@ -273,6 +213,9 @@ h1 {
     top: 6rem;
     right: 5rem;
   }
+  #productName {
+    margin-left: 1rem;
+  }
 }
 @media (max-width: 548px) {
   .container-sm img {
@@ -338,7 +281,7 @@ h1 {
 }
 
 .valid-feedback,
-.invalid-feedback{
+.invalid-feedback {
   text-transform: initial !important;
   font-weight: 600 !important;
 }
@@ -347,5 +290,3 @@ h1 {
 .form-control.is-invalid {
   background-image: none !important;
 }
-
-

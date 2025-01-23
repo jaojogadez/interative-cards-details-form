@@ -18,8 +18,8 @@ const $cvc = document.querySelector("#cardholder-cvc");
 /* CARD's Interative Details */
 const numberCard = document.getElementById("placeholder-card");
 const nameCard = document.getElementById("name");
-const dateCardMM = document.getElementById("dateMM");
-const dateCardYY = document.getElementById("dateYY");
+let dateCardMM = document.getElementById("dateMM");
+let dateCardYY = document.getElementById("dateYY");
 const cvcCard = document.getElementById("cvc");
 
 numberCard.innerText = "0000 0000 0000 0000";
@@ -158,7 +158,17 @@ $form.addEventListener("submit", (event) => {
   } else {
     alert("Form Enviado!");
   }
+
+  console.log($expMounth.value)
+  console.log($expYear.value)
 });
+
+$expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth) )
+
+let innerDateCard = (date, input) => {
+  const dateValue = input.value.padStart(2, "0")
+  date.textContent = dateValue
+}
 
 const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc]
 inputsNumber.forEach(input => {
