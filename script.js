@@ -1,7 +1,7 @@
 /* FORM's ELEMENTs PESSOAL INFO*/
 const $form = document.querySelector("form");
 const $inputs = document.querySelectorAll("form input, form select");
-const $name = document.querySelector("#name");
+const $name = document.querySelector("#name-input");
 const $cpf = document.querySelector("#cpf");
 const $tel = document.querySelector("#tel");
 const $cep = document.querySelector("#cep");
@@ -160,37 +160,79 @@ $form.addEventListener("submit", (event) => {
   }
 });
 
+const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc]
+inputsNumber.forEach(input => {
+  input.addEventListener("input", () => {
+    input.value = onlyNumbers(input.value) 
+  });
+})
+
+const inputsString = [$name, $address, $holder]
+inputsString.forEach(input => {
+  input.addEventListener("input", () => {
+    input.value = onlyLetters(input.value)
+    validateInput(input, "minLetters", "string")
+  })
+})
+
 $numberCard.addEventListener("input", () => {
-  const numberCardFormated = onlyNumbers($numberCard.value.trim());
   const regexNumberCard = /(\d{4})(?=\d)/g;
-  const formatNumberCard = numberCardFormated.replace(regexNumberCard, "$1 ").slice(0, 19);
+  const formatNumberCard = $numberCard.value.replace(regexNumberCard, "$1 ").slice(0, 19);
   $numberCard.value = formatNumberCard;
+  validateInput($numberCard, "card")
+  innerCard(numberCard, $numberCard)
 });
 
+$holder.oninput = () => {innerCard(nameCard, $holder)}
+$cvc.oninput = () => {innerCard(cvcCard, $cvc)}
+
+let innerCard = (card, input) => {
+  card.innerText = input.value
+}
+
 $cpf.addEventListener("input", () => {
-  const numberCPFformated = onlyNumbers($cpf.value.trim()).slice(0, 11);
-  const formatCPF = numberCPFformated.replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{2})$/, "$1-$2");
+  let formatCPF = $cpf.value.slice(0, 11).replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d)/, "$1.$2").replace(/(\d{3})(\d{2})$/, "$1-$2");
   $cpf.value = formatCPF;
   validateInput($cpf, "cpf")
 });
 
 $tel.addEventListener("input", () => {
-  let formatedTel = onlyNumbers($tel.value.trim().slice(0, 15)).replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1 $2")
+  let formatedTel = $tel.value.slice(0, 11).replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1 $2")
   $tel.value = formatedTel;
   validateInput($tel, "tel")
-})
+});
+
+$cep.addEventListener("input", () => {
+  let formatedCep = $cep.value.slice(0, 8).replace(/^(\d{5})(\d)/, "$1-$2")
+  $cep.value = formatedCep
+  validateInput($cep, "cep")
+});
+
+const numberEcvc = [$addressNumber, $cvc]
+numberEcvc.forEach(input => {
+  input.addEventListener("input", () => {
+    validateInput(input, "num")
+  });
+});
 
 const expectedLengths = {
   cpf: 11,
   tel: 11,
   cep: 8,
-  num: 3
+  num: 3,
+  minLetters: 10,
+  card: 16
 }
 
-let validateInput = (input, type) => {
-  const value = onlyNumbers(input.value)
+let validateInput = (input, type, cond) => {
+  const value = cond == "string" ? input.value : onlyNumbers(input.value)
   const requireLenght = expectedLengths[type]
-  const isValid = value.length === requireLenght
+  let isValid 
+  if(cond === "string"){
+    isValid = value.length > requireLenght
+  }else{
+    isValid = value.length === requireLenght
+  }
   
   const validFeedback = input.nextElementSibling;
   const invalidFeedback = validFeedback.nextElementSibling;
@@ -216,6 +258,9 @@ let onlyNumbers = (value) => {
   return value.replace(/\D/g, "");
 };
 
+let onlyLetters = (string) => {
+  return string.replace(/[^A-Za-zÀ-ÿ\s]/gu ,"");
+}
 /* TIMER's ELEMENT*/
 const $clock = document.getElementById("timer");
 
