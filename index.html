@@ -101,21 +101,23 @@
             </div>
             <div class="col-md-9 p-0" id="productName">
               <h3 class="m-0">Produto</h3>
-              <p class="text-dark  fw-semibold m-0 ">R$499,00</p>
+              <p class="text-dark fw-semibold m-0">R$499,00</p>
               <span class="text-secondary fs-3">R$97,99</span>
             </div>
           </div>
-          <form class="container needs-validation" id="form-two" novalidate autocomplete="on">
+          <form
+            class="container needs-validation"
+            id="form-two"
+            novalidate
+            autocomplete="on"
+          >
             <div class="container-fluid row">
               <div class="col-md-6">
                 <div
                   class="mb-3 text-uppercase small fw-bold position-relative"
                   id="nameFieldTwo"
                 >
-                  <label
-                    for="name"
-                    class="form-label"
-                    data-aos="fade-up"
+                  <label for="name" class="form-label" data-aos="fade-up"
                     >Nome completo</label
                   >
                   <input
@@ -131,7 +133,9 @@
                     data-aos-delay="200"
                   />
                   <div class="valid-feedback">Parece bom!</div>
-                  <div class="invalid-feedback">Por favor, insira seu nome completo.</div>          
+                  <div class="invalid-feedback">
+                    Por favor, insira seu nome completo.
+                  </div>
                 </div>
                 <!-- CPF -->
                 <div class="row">
@@ -158,7 +162,9 @@
                       data-aos-delay="300"
                     />
                     <div class="valid-feedback">CPF válido!</div>
-                    <div class="invalid-feedback">Insira um CPF no formato correto.</div>
+                    <div class="invalid-feedback">
+                      Insira um CPF no formato correto.
+                    </div>
                   </div>
                   <!-- TEL -->
                   <div
@@ -185,7 +191,9 @@
                       pattern="\(\d{2}\) \d{5} \d{4}"
                     />
                     <div class="valid-feedback">Número válido!</div>
-                    <div class="invalid-feedback">Insira um número no formato correto.</div>
+                    <div class="invalid-feedback">
+                      Insira um número no formato correto.
+                    </div>
                   </div>
                 </div>
                 <!-- CEP -->
@@ -213,7 +221,9 @@
                     pattern="\d{5} - \d{3}"
                   />
                   <div class="valid-feedback">CEP válido!</div>
-                  <div class="invalid-feedback">Insira um CEP no formato correto.</div>          
+                  <div class="invalid-feedback">
+                    Insira um CEP no formato correto.
+                  </div>
                 </div>
                 <div class="row">
                   <!-- ADDRESS -->
@@ -240,7 +250,9 @@
                       data-aos-delay="300"
                     />
                     <div class="valid-feedback">Endereço válido!</div>
-                    <div class="invalid-feedback">Por favor, insira um endereço.</div>
+                    <div class="invalid-feedback">
+                      Por favor, insira um endereço.
+                    </div>
                   </div>
                   <div
                     class="col-md-3 mb-3 text-uppercase small fw-bold position-relative"
@@ -267,7 +279,9 @@
                       maxlength="3"
                     />
                     <div class="valid-feedback">Número válido!</div>
-                    <div class="invalid-feedback">Por favor, insira um número correto.</div>
+                    <div class="invalid-feedback">
+                      Por favor, insira um número correto.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -296,7 +310,9 @@
                     data-aos-delay="200"
                   />
                   <div class="valid-feedback">Nome válido!</div>
-                  <div class="invalid-feedback">Por favor, insira o nome do titular.</div>          
+                  <div class="invalid-feedback">
+                    Por favor, insira o nome do titular.
+                  </div>
                 </div>
                 <!-- Number Card -->
                 <div
@@ -323,7 +339,9 @@
                     data-aos-delay="300"
                   />
                   <div class="valid-feedback">Número de cartão válido!</div>
-                  <div class="invalid-feedback">Insira um número de cartão no formato correto.</div>
+                  <div class="invalid-feedback">
+                    Insira um número de cartão no formato correto.
+                  </div>
                 </div>
                 <!-- Date -->
                 <div class="mb-3 text-uppercase small fw-bold row">
@@ -418,7 +436,7 @@
                     <div class="invalid-feedback">Selecione o ano.</div>
                   </div>
                   <!-- CVC -->
-                  <div class="col position-relative" id="cvc-field">
+                  <div class="col position-relative mb-3" id="cvc-field">
                     <label
                       for="cardholder-cvc"
                       class="form-label"
@@ -439,16 +457,50 @@
                       data-aos-delay="400"
                     />
                     <div class="valid-feedback">Parece bom!</div>
-                    <div class="invalid-feedback">Por favor, o CVC é obrigatório.</div>
+                    <div class="invalid-feedback">
+                      Por favor, o CVC é obrigatório.
+                    </div>
+                  </div>
+                  <div class="accordion" id="desconto">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button
+                          class="accordion-button"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne"
+                          aria-expanded="true"
+                          aria-controls="collapseOne"
+                        >
+                          Aplique um desconto
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseOne"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#desconto"
+                      >
+                        <div class="accordion-body d-flex gap-2 align-items-center">
+                          <div class="col-9">
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Digite aqui"
+                            />
+                          </div>
+                          <div class="col-3">
+                            <input
+                              type="submit"
+                              value="Aplicar"
+                              class="btn btn-dark w-100 "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <input
-                  type="submit"
-                  value="Confirmar"
-                  class="btn btn-dark mt-4 w-100 mb-5"
-                  data-aos="fade-up"
-                  data-aos-delay="100"
-                />
               </div>
             </div>
           </form>
@@ -518,19 +570,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
     <script>
       (() => {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
+        "use strict";
+        const forms = document.querySelectorAll(".needs-validation");
         Array.from(forms).forEach((form) => {
-          form.addEventListener('submit', (event) => {
-            if (!form.checkValidity()) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add('was-validated');
-          }, false);
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
         });
       })();
     </script>
-    
   </body>
 </html>
