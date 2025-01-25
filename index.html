@@ -106,7 +106,7 @@
             </div>
           </div>
           <form
-            class="container needs-validation"
+            class="container needs-validation d-flex flex-column"
             id="form-two"
             novalidate
             autocomplete="on"
@@ -472,7 +472,7 @@
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          Aplique um desconto
+                          Cupom aplicado 
                         </button>
                       </h2>
                       <div
@@ -481,11 +481,14 @@
                         aria-labelledby="headingOne"
                         data-bs-parent="#desconto"
                       >
-                        <div class="accordion-body d-flex gap-2 align-items-center">
+                        <div
+                          class="accordion-body d-flex gap-2 align-items-center"
+                        >
                           <div class="col-9">
                             <input
                               type="text"
                               class="form-control"
+                              value="vaiCorinthians10"
                               placeholder="Digite aqui"
                             />
                           </div>
@@ -493,7 +496,7 @@
                             <input
                               type="submit"
                               value="Aplicar"
-                              class="btn btn-dark w-100 "
+                              class="btn btn-dark btn-sm d-none"
                             />
                           </div>
                         </div>
@@ -503,6 +506,12 @@
                 </div>
               </div>
             </div>
+            <input
+              type="submit"
+              id="btnSubmit"
+              value="Confirmar"
+              class="btn btn-dark mt-2 mb-5 mx-3 px-5"
+            />
           </form>
           <div class="container text-center col-md-6 d-none" id="form-complete">
             <img

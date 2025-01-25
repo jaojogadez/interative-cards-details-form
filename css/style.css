@@ -98,6 +98,9 @@ body {
   font-size: 0.8em;
 }
 /* Form configuration start */
+#btnSubmit{
+  align-self: end;
+}
 label {
   font: normal bold 0.85em var(--header-font);
   letter-spacing: 2.5px;
