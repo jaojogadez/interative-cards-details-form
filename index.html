@@ -41,7 +41,8 @@
         class="bi bi-question-circle"
         style="cursor: pointer"
         data-bs-toggle="tooltip"
-        title="Este é o texto do tooltip"
+        data-bs-placement="bottom"
+        title="Após o tempo acabar, não será possível aplicar um desconto."
       ></i>
     </div>
     <div
@@ -107,8 +108,8 @@
             </div>
             <div class="col-md-9 p-0" id="productName">
               <h3 class="m-0">Produto</h3>
-              <p class="text-dark fw-semibold m-0">R$499,00</p>
-              <span class="text-secondary fs-3">R$97,99</span>
+              <p class="text-dark fw-semibold m-0 realPrice">R$499,00</p>
+              <span class="text-secondary">R$97,99</span>
             </div>
           </div>
           <form
@@ -467,7 +468,7 @@
                       Por favor, o CVC é obrigatório.
                     </div>
                   </div>
-                  <div class="accordion" id="desconto">
+                  <div class="accordion" id="desconto" data-aos="fade-up" data-aos-delay="402">
                     <div class="accordion-item">
                       <h2 class="accordion-header" id="headingOne">
                         <button
@@ -475,7 +476,7 @@
                           type="button"
                           data-bs-toggle="collapse"
                           data-bs-target="#collapseOne"
-                          aria-expanded="true"
+                          aria-expanded="false"
                           aria-controls="collapseOne"
                         >
                           Cupom aplicado
@@ -483,7 +484,7 @@
                       </h2>
                       <div
                         id="collapseOne"
-                        class="accordion-collapse collapse show"
+                        class="accordion-collapse collapse"
                         aria-labelledby="headingOne"
                         data-bs-parent="#desconto"
                       >
@@ -493,6 +494,7 @@
                           <div class="col-9">
                             <input
                               type="text"
+                              id="desconto-input"
                               class="form-control"
                               value="vaiCorinthians10"
                               placeholder="Digite aqui"
@@ -500,11 +502,12 @@
                           </div>
                           <div class="col-3">
                             <input
-                              type="submit"
+                              type="button"
+                              id="desconto-btn"
                               value="Aplicar"
-                              class="btn btn-dark btn-sm d-none"
+                              class="btn btn-dark btn-sm"
                             />
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="button" class="btn btn-danger btn-sm d-none" id="desconto-remove">
                               <i class="bi bi-trash3-fill"></i>
                             </button>
                           </div>
@@ -604,12 +607,6 @@
           );
         });
       })();
-      const tooltipTriggerList = document.querySelectorAll(
-        '[data-bs-toggle="tooltip"]'
-      );
-      const tooltipList = [...tooltipTriggerList].map(
-        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-      );
     </script>
   </body>
 </html>

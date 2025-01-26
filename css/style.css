@@ -8,8 +8,8 @@
   --vender-red: hsl(0, 53%, 56%);
   --Green-inputerrors: #28a745;
   --White: hsl(0, 0%, 100%);
-  --Lightgrayish: hsl(270, 3%, 87%);
-  --Darkgrayish: hsl(279, 6%, 55%);
+  --Lightgrayish: hsl(0, 0%, 97%);
+  --Darkgrayish: hsla(279, 6%, 55%, 0.527);
   --Verydark: hsl(278, 68%, 11%);
   --header-font: "Orbitron";
   --secondary-font: "Roboto", sans-serif;
@@ -18,9 +18,6 @@ html,
 body {
   font: normal normal 18px var(--secondary-font);
   overflow-x: hidden;
-}
-.alert {
-  z-index: 9999;
 }
 #productName h3 {
   color: var(--Verydark);
@@ -98,7 +95,7 @@ body {
   font-size: 0.8em;
 }
 /* Form configuration start */
-#btnSubmit{
+#btnSubmit {
   align-self: end;
 }
 label {
@@ -106,10 +103,25 @@ label {
   letter-spacing: 2.5px;
 }
 input:focus,
-select:focus {
+select:focus{
   border: 1px solid var(--purple) !important;
   box-shadow: none !important;
 }
+.accordion-button{
+  border-color: var(--purple) !important;
+  background-color: var(--Lightgrayish) !important; 
+  color: var(--purple) !important; 
+}
+.accordion-button:focus{
+  box-shadow: 0 0 10px 2px var(--Darkgrayish); 
+  border-color: var(--purple);
+  background-color: var(--Lightgrayish); 
+  color: var(--purple); 
+}
+.accordion-button:focus-visible {
+  box-shadow: 0 0 10px 2px var(--Darkgrayish);
+}
+
 .btn-dark {
   background-color: var(--Verydark);
   font-size: 0.95em;
@@ -136,8 +148,35 @@ h1 {
 #form-complete input {
   animation: fade 0.45s linear;
 }
+#productName p , #productName span{
+  transition: all .5s ease-in-out;
+}
+#productName span{
+  text-decoration: line-through;
+}
+.realPrice{
+  font-size: 2em;
+  text-decoration: none !important;
+}
+.descontPrice{
+  font-size: 2em;
+  text-decoration: none !important;
+}
+#desconto-btn:disabled,
+#desconto-input:disabled{
+  cursor: not-allowed;
+}
+.tooltip-inner {
+  background-color: #dc3545 !important; 
+  color: #fff !important; 
+  z-index: 99999;
+}
+.tooltip-arrow::before {
+  display: none !important;
+}
+
 @media (min-width: 2000px) {
-  #productName{
+  #productName {
     transform: translateX(-80px);
   }
 }

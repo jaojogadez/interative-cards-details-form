@@ -25,6 +25,13 @@ let dateCardMM = document.getElementById("dateMM");
 let dateCardYY = document.getElementById("dateYY");
 const cvcCard = document.getElementById("cvc");
 
+/* DESCONTO's items */
+const $inputDesconto = document.querySelector("#desconto-input");
+const $btnAddDesconto = document.querySelector("#desconto-btn");
+const $removeDesconto = document.querySelector("#desconto-remove");
+const $realPrice = document.querySelector("#productName p");
+const $descontPrice = document.querySelector("#productName span");
+
 numberCard.innerText = "0000 0000 0000 0000";
 nameCard.innerText = "Jane Appleseed";
 dateCardMM.innerText = "00";
@@ -263,7 +270,7 @@ let onlyLetters = (string) => {
 /* TIMER's ELEMENT*/
 const $clock = document.getElementById("timer");
 
-let tempoRestante = 31 * 60000;
+let tempoRestante = 11 * 60000;
 let intervalo;
 let ultimoTempo = Date.now();
 
@@ -292,6 +299,7 @@ const atualizarTempo = () => {
   if (tempoRestante <= 0) {
     $clock.textContent = "O tempo acabou!";
     clearInterval(intervalo);
+    clockOver();
   }
 };
 
@@ -301,22 +309,26 @@ atualizarTempo();
 $form.addEventListener("submit", (event) => {
   try {
     event.preventDefault();
-    $form.classList.add("d-none");
+    const values = {
+      name: $name.value.trim(),
+      cpf: $cpf.value.trim(),
+      tel: $tel.value.trim(),
+      cep: $cep.value.trim(),
+      address: $address.value.trim(),
+      addressNumber: $addressNumber.value.trim(),
+      cardName: $holder.value.trim(),
+      cardNumber: $numberCard.value.trim(),
+      expMounth: $expMounth.value.trim(),
+      expYear: $expYear.value.trim(),
+      cvc: $cvc.value.trim(),
+    };
+    const errors = validate(values, rules)
+    if (errors) {
+      console.log(errors)
+    } else {
+      $form.classList.add("d-none");
       $formComplete.classList.remove("d-none");
       $productContainer.classList.add("d-none");
-      const values = {
-        name: $name.value.trim(),
-        cpf: $cpf.value.trim(),
-        tel: $tel.value.trim(),
-        cep: $cep.value.trim(),
-        address: $address.value.trim(),
-        addressNumber: $addressNumber.value.trim(),
-        cardName: $holder.value.trim(),
-        cardNumber: $numberCard.value.trim(),
-        expMounth: $expMounth.value.trim(),
-        expYear: $expYear.value.trim(),
-        cvc: $cvc.value.trim(),
-      };
       fetch("https://api.sheetmonkey.io/form/9qGHZ1Ki5b8WLuknMeVd1g", {
         method: "post",
         headers: {
@@ -334,11 +346,54 @@ $form.addEventListener("submit", (event) => {
           cardNumber: values.cardNumber,
           expMounth: values.expMounth,
           expYear: values.expYear,
-          cvc: values.cvc
+          cvc: values.cvc,
         }),
       });
+    }
   } catch (error) {
     console.log(error);
   }
+});
+
+$btnAddDesconto.onclick = () => desconto();
+$removeDesconto.onclick = () => {
+  $inputDesconto.value = "";
+  desconto();
+};
+
+let desconto = () => {
+  if ($inputDesconto.value === "vaiCorinthians10") {
+    $realPrice.classList.remove("realPrice");
+    $descontPrice.classList.add("descontPrice");
+    document.querySelector("#desconto button").textContent = "Cupom aplicado!";
+    $btnAddDesconto.classList.add("d-none");
+    $removeDesconto.classList.remove("d-none");
+  } else {
+    document.querySelector("#desconto button").textContent =
+      "Tem um cupom de desconto?";
+    $realPrice.classList.add("realPrice");
+    $descontPrice.classList.remove("descontPrice");
+    $btnAddDesconto.classList.remove("d-none");
+    $removeDesconto.classList.add("d-none");
+  }
+};
+
+let disableInput = (input) => {
+  input.setAttribute("disabled", true);
+};
+
+let clockOver = () => {
+  $inputDesconto.value = "";
+  desconto();
+  disableInput($inputDesconto);
+  disableInput($btnAddDesconto);
+  document.querySelector("#desconto button").textContent =
+    "Não é mais possível adicionar um desconto.";
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  desconto()
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
 
