@@ -37,7 +37,12 @@
       <small class="fw-normal m-0">Não perca tempo</small>
       <i class="bi bi-alarm"></i>
       <span id="timer">00:00</span>
-      <i class="bi bi-question-circle"></i>
+      <i
+        class="bi bi-question-circle"
+        style="cursor: pointer"
+        data-bs-toggle="tooltip"
+        title="Este é o texto do tooltip"
+      ></i>
     </div>
     <div
       class="container-fluid p-0 d-flex align-items-center justify-content-center"
@@ -473,7 +478,7 @@
                           aria-expanded="true"
                           aria-controls="collapseOne"
                         >
-                          Cupom aplicado 
+                          Cupom aplicado
                         </button>
                       </h2>
                       <div
@@ -599,6 +604,12 @@
           );
         });
       })();
+      const tooltipTriggerList = document.querySelectorAll(
+        '[data-bs-toggle="tooltip"]'
+      );
+      const tooltipList = [...tooltipTriggerList].map(
+        (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+      );
     </script>
   </body>
 </html>
