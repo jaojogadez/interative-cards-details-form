@@ -324,7 +324,8 @@ $form.addEventListener("submit", (event) => {
     };
     const errors = validate(values, rules)
     if (errors) {
-      console.log(errors)
+      const errorToast = new bootstrap.Toast(document.getElementById("liveToast"));
+      errorToast.show();
     } else {
       $form.classList.add("d-none");
       $formComplete.classList.remove("d-none");

@@ -113,7 +113,7 @@
             </div>
           </div>
           <form
-            class="container needs-validation d-flex flex-column"
+            class="container needs-validation d-flex flex-column align-items-center"
             id="form-two"
             novalidate
             autocomplete="on"
@@ -286,8 +286,8 @@
                       maxlength="3"
                     />
                     <div class="valid-feedback">Número válido!</div>
-                    <div class="invalid-feedback">
-                      Por favor, insira um número correto.
+                    <div class="invalid-feedback" style="font-size: .8em;">
+                      Número inválido.
                     </div>
                   </div>
                 </div>
@@ -498,6 +498,7 @@
                               class="form-control"
                               value="vaiCorinthians10"
                               placeholder="Digite aqui"
+                              novalidate
                             />
                           </div>
                           <div class="col-3">
@@ -534,11 +535,6 @@
             />
             <h1 class="text-uppercase">Obrigado!</h1>
             <p>Adicionamos os detalhes do seu cartão.</p>
-            <input
-              type="submit"
-              value="Continue"
-              class="btn btn-dark w-100 mt-3"
-            />
           </div>
         </div>
       </div>
