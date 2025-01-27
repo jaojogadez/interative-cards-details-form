@@ -216,9 +216,10 @@ h1 {
 }
 @media (min-width: 768px) {
   #card-container {
-    background: black url("../images/bg-main-desktop.png") no-repeat;
+    background: black url("../images/bg-main-desktop.png") repeat;
     background-size: cover;
-    min-height: 100vh;
+    min-height: 100vh !important;
+    height: 100%;
   }
   #aligment-cards {
     position: absolute;
