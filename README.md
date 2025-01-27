@@ -21,7 +21,7 @@ Página de pagamento com validação de formulário, desenvolvida com Bootstrap,
 </ul>
 
 ## Acesse aqui🔥
-https://jaojogadez.github.io/landing-page-echo-lights/
+https://jaojogadez.github.io/interative-cards-details-form/
 
 ## Imagens do projeto
 
