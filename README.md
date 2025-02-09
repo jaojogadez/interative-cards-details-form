@@ -1,6 +1,6 @@
 # 💳 Interactive Cards Details Form
 
-Uma aplicação web interativa para coletar detalhes de cartões de pagamento e informações pessoais. O formulário valida os dados em tempo real e fornece feedback visual para uma melhor experiência do usuário. Após a submissão, os dados são enviados para um endpoint da API SheetMonkey.
+Uma aplicação web interativa que simula uma página de pagamento. O formulário valida os dados em tempo real e fornece feedback visual para uma melhor experiência do usuário. Após a submissão, os dados são enviados para um endpoint da API SheetMonkey.
 
 🔗 Acesse o projeto: [https://jaojogadez.github.io/interative-cards-details-form/]
 
