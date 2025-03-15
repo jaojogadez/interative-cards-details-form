@@ -38,6 +38,7 @@ dateCardMM.innerText = "00";
 dateCardYY.innerText = "00";
 cvcCard.innerText = "000";
 
+// Object with rules for validate form
 const rules = {
   name: {
     presence: {
@@ -147,10 +148,12 @@ const rules = {
 $expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth));
 $expYear.addEventListener("input", () => innerCard(dateCardYY, $expYear));
 
+// function for how the value of dates inputs on interative cards
 let innerDateCard = (date, input) => {
   date.textContent = input.value;
 };
 
+// get all inputs typeof number and apply a regex for only numbers
 const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc];
 inputsNumber.forEach((input) => {
   input.addEventListener("input", () => {
@@ -158,6 +161,7 @@ inputsNumber.forEach((input) => {
   });
 });
 
+// get all inputs typeof text and apply a regex for only text
 const inputsString = [$name, $address, $holder];
 inputsString.forEach((input) => {
   input.addEventListener("input", () => {
