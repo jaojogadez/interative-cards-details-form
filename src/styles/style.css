@@ -22,6 +22,12 @@ body {
 #productName h3 {
   color: var(--Verydark);
 }
+.alert {
+  box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.45);
+}
+.invalid-feedback {
+  font-size: 0.8em;
+}
 #productName .text-dark {
   color: var(--vender-red) !important;
   text-decoration: line-through;
