@@ -18,21 +18,6 @@ const $expMounth = document.querySelector("#cardholder-expdate");
 const $expYear = document.querySelector("#cardholder-mmyy");
 const $cvc = document.querySelector("#cardholder-cvc");
 
-/* CARD's Interative Details */
-const numberCard = document.getElementById("placeholder-card");
-const nameCard = document.getElementById("name");
-let dateCardMM = document.getElementById("dateMM");
-let dateCardYY = document.getElementById("dateYY");
-const cvcCard = document.getElementById("cvc");
-
-
-
-numberCard.innerText = "0000 0000 0000 0000";
-nameCard.innerText = "Jane Appleseed";
-dateCardMM.innerText = "00";
-dateCardYY.innerText = "00";
-cvcCard.innerText = "000";
-
 // Object with rules for validate form
 const rules = {
   name: {
@@ -140,14 +125,6 @@ const rules = {
   },
 };
 
-$expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth));
-$expYear.addEventListener("input", () => innerCard(dateCardYY, $expYear));
-
-// function for how the value of dates inputs on interative cards
-let innerDateCard = (date, input) => {
-  date.textContent = input.value;
-};
-
 // get all inputs typeof number and apply a regex for only numbers
 const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc];
 inputsNumber.forEach((input) => {
@@ -175,16 +152,6 @@ $numberCard.addEventListener("input", () => {
   innerCard(numberCard, $numberCard);
 });
 
-$holder.oninput = () => {
-  innerCard(nameCard, $holder);
-};
-$cvc.oninput = () => {
-  innerCard(cvcCard, $cvc);
-};
-
-let innerCard = (card, input) => {
-  card.innerText = input.value;
-};
 
 $cpf.addEventListener("input", () => {
   let formatCPF = $cpf.value
