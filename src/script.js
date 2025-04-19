@@ -25,12 +25,7 @@ let dateCardMM = document.getElementById("dateMM");
 let dateCardYY = document.getElementById("dateYY");
 const cvcCard = document.getElementById("cvc");
 
-/* DESCONTO's items */
-const $inputDesconto = document.querySelector("#desconto-input");
-const $btnAddDesconto = document.querySelector("#desconto-btn");
-const $removeDesconto = document.querySelector("#desconto-remove");
-const $realPrice = document.querySelector("#productName p");
-const $descontPrice = document.querySelector("#productName span");
+
 
 numberCard.innerText = "0000 0000 0000 0000";
 nameCard.innerText = "Jane Appleseed";
@@ -271,44 +266,8 @@ let onlyLetters = (string) => {
   return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
 };
 
-/* TIMER's ELEMENT*/
-const $clock = document.getElementById("timer");
 
-let tempoRestante = 11 * 60000;
-let intervalo;
-let ultimoTempo = Date.now();
 
-const atualizarTempo = () => {
-  let tempoAgora = Date.now();
-  let tempoDecorrido = tempoAgora - ultimoTempo;
-  ultimoTempo = tempoAgora;
-
-  tempoRestante -= tempoDecorrido;
-
-  let minutos = Math.floor(tempoRestante / 60000);
-  let segundos = Math.floor((tempoRestante % 60000) / 1000);
-  let milisegundos = tempoRestante % 1000;
-
-  minutos = minutos < 10 ? `0${minutos}` : minutos;
-  segundos = segundos < 10 ? `0${segundos}` : segundos;
-  milisegundos =
-    milisegundos < 100
-      ? `0${milisegundos}`
-      : milisegundos < 10
-      ? `0${milisegundos}`
-      : milisegundos;
-
-  let timerFormatado = `${minutos}:${segundos}:${milisegundos}`;
-  $clock.textContent = timerFormatado;
-  if (tempoRestante <= 0) {
-    $clock.textContent = "O tempo acabou!";
-    clearInterval(intervalo);
-    clockOver();
-  }
-};
-
-intervalo = setInterval(atualizarTempo, 10);
-atualizarTempo();
 
 $form.addEventListener("submit", (event) => {
   try {
@@ -358,47 +317,5 @@ $form.addEventListener("submit", (event) => {
   } catch (error) {
     console.log(error);
   }
-});
-
-$btnAddDesconto.onclick = () => desconto();
-$removeDesconto.onclick = () => {
-  $inputDesconto.value = "";
-  desconto();
-};
-
-let desconto = () => {
-  if ($inputDesconto.value === "vaiCorinthians10") {
-    $realPrice.classList.remove("realPrice");
-    $descontPrice.classList.add("descontPrice");
-    document.querySelector("#desconto button").textContent = "Cupom aplicado!";
-    $btnAddDesconto.classList.add("d-none");
-    $removeDesconto.classList.remove("d-none");
-  } else {
-    document.querySelector("#desconto button").textContent =
-      "Tem um cupom de desconto?";
-    $realPrice.classList.add("realPrice");
-    $descontPrice.classList.remove("descontPrice");
-    $btnAddDesconto.classList.remove("d-none");
-    $removeDesconto.classList.add("d-none");
-  }
-};
-
-let disableInput = (input) => {
-  input.setAttribute("disabled", true);
-};
-
-let clockOver = () => {
-  $inputDesconto.value = "";
-  desconto();
-  disableInput($inputDesconto);
-  disableInput($btnAddDesconto);
-  document.querySelector("#desconto button").textContent =
-    "Não é mais possível adicionar um desconto.";
-};
-
-document.addEventListener("DOMContentLoaded", () => {
-  desconto()
-  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 });
 
