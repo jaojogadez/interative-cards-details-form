@@ -125,34 +125,6 @@ const rules = {
   },
 };
 
-// get all inputs typeof number and apply a regex for only numbers
-const inputsNumber = [$numberCard, $cpf, $tel, $cep, $addressNumber, $cvc];
-inputsNumber.forEach((input) => {
-  input.addEventListener("input", () => {
-    input.value = onlyNumbers(input.value);
-  });
-});
-
-// get all inputs typeof text and apply a regex for only text
-const inputsString = [$name, $address, $holder];
-inputsString.forEach((input) => {
-  input.addEventListener("input", () => {
-    input.value = onlyLetters(input.value);
-    validateInput(input, "minLetters", "string");
-  });
-});
-
-$numberCard.addEventListener("input", () => {
-  const regexNumberCard = /(\d{4})(?=\d)/g;
-  const formatNumberCard = $numberCard.value
-    .replace(regexNumberCard, "$1 ")
-    .slice(0, 19);
-  $numberCard.value = formatNumberCard;
-  validateInput($numberCard, "card");
-  innerCard(numberCard, $numberCard);
-});
-
-
 $cpf.addEventListener("input", () => {
   let formatCPF = $cpf.value
     .slice(0, 11)
@@ -185,56 +157,6 @@ numberEcvc.forEach((input) => {
   });
 });
 
-const expectedLengths = {
-  cpf: 11,
-  tel: 11,
-  cep: 8,
-  num: 3,
-  minLetters: 10,
-  card: 16,
-  select: 2,
-};
-
-let validateInput = (input, type, cond) => {
-  const value = cond == "string" ? input.value : onlyNumbers(input.value);
-  const requireLenght = expectedLengths[type];
-  let isValid;
-  if (cond === "string") {
-    isValid = value.length > requireLenght;
-  } else {
-    isValid = value.length === requireLenght;
-  }
-
-  const validFeedback = input.nextElementSibling;
-  const invalidFeedback = validFeedback.nextElementSibling;
-
-  if (isValid) {
-    validFeedback.style.display = "block";
-    invalidFeedback.style.display = "none";
-    input.style.borderColor = "green";
-    input.classList.remove("is-invalid");
-    input.classList.add("is-valid");
-    input.classList.add("valid-background");
-  } else {
-    validFeedback.style.display = "none";
-    invalidFeedback.style.display = "block";
-    input.style.borderColor = "red";
-    input.classList.add("is-invalid");
-    input.classList.remove("is-valid");
-    input.classList.remove("valid-background");
-  }
-};
-
-let onlyNumbers = (value) => {
-  return value.replace(/\D/g, "");
-};
-
-let onlyLetters = (string) => {
-  return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
-};
-
-
-
 
 $form.addEventListener("submit", (event) => {
   try {
@@ -252,9 +174,11 @@ $form.addEventListener("submit", (event) => {
       expYear: $expYear.value.trim(),
       cvc: $cvc.value.trim(),
     };
-    const errors = validate(values, rules)
+    const errors = validate(values, rules);
     if (errors) {
-      const errorToast = new bootstrap.Toast(document.getElementById("liveToast"));
+      const errorToast = new bootstrap.Toast(
+        document.getElementById("liveToast")
+      );
       errorToast.show();
     } else {
       $form.classList.add("d-none");
@@ -285,4 +209,3 @@ $form.addEventListener("submit", (event) => {
     console.log(error);
   }
 });
-
