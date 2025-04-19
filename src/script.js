@@ -125,16 +125,6 @@ const rules = {
   },
 };
 
-$cpf.addEventListener("input", () => {
-  let formatCPF = $cpf.value
-    .slice(0, 11)
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d)/, "$1.$2")
-    .replace(/(\d{3})(\d{2})$/, "$1-$2");
-  $cpf.value = formatCPF;
-  validateInput($cpf, "cpf");
-});
-
 $tel.addEventListener("input", () => {
   let formatedTel = $tel.value
     .slice(0, 11)
@@ -156,7 +146,6 @@ numberEcvc.forEach((input) => {
     validateInput(input, "num");
   });
 });
-
 
 $form.addEventListener("submit", (event) => {
   try {

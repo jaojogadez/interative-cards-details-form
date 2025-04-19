@@ -18,12 +18,27 @@ export function validateNumberCard(input) {
   });
 }
 
+// Função para validar o CPF
+export function validateCPF(input) {
+  input.addEventListener("input", () => {
+    // Remove tudo que não é número
+    let cpf = onlyNumbers(input.value).slice(0, 11);
+    cpf = cpf
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d)/, "$1.$2")
+      .replace(/(\d{3})(\d{2})$/, "$1-$2");
+    input.value = cpf;
+    validateInput(input, "cpf");
+    console.log(input.value);
+  });
+}
+
 // Função para deixar somente números
-export function onlyNumbers(value){
+export function onlyNumbers(value) {
   return value.replace(/\D/g, "");
-};
+}
 
 // Função para deixar somente letras
-export function onlyLetters(string){
+export function onlyLetters(string) {
   return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
-};
+}
