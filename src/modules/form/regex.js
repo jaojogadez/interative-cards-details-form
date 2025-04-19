@@ -18,10 +18,12 @@ export function validateNumberCard(input) {
   });
 }
 
+// Função para deixar somente números
 export function onlyNumbers(value){
   return value.replace(/\D/g, "");
 };
 
+// Função para deixar somente letras
 export function onlyLetters(string){
   return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
 };

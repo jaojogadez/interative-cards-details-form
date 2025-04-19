@@ -21,7 +21,7 @@ stringInputs.forEach((input) => {
 });
 
 numberInputs.forEach((input) => {
-    input.addEventListener("input", () => {
-        input.value = regex.onlyNumbers(input.value)
-    })
-})
+  input.addEventListener("input", () => {
+    input.value = regex.onlyNumbers(input.value);
+  });
+});

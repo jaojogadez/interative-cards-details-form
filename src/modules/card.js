@@ -29,7 +29,6 @@ $cvc.oninput = () => {
   innerCard(cvcCard, $cvc);
 };
 
-
 $expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth));
 $expYear.addEventListener("input", () => innerCard(dateCardYY, $expYear));
 
