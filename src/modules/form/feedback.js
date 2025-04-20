@@ -3,9 +3,9 @@ import { onlyNumbers } from "./regex.js";
 const expectedLengths = {
   cpf: 11,
   tel: 12,
-  cep: 8,
+  cep: 9,
   num: 3,
-  minLetters: 10,
+  minLetters: 8,
   card: 16,
   select: 2,
 };
@@ -19,6 +19,7 @@ export function validateInput(input, type, cond){
     isValid = value.length > requireLenght;
   } else {
     isValid = value.length === requireLenght;
+    console.log(value.length)
   }
 
   const validFeedback = input.nextElementSibling;

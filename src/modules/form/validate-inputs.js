@@ -18,6 +18,7 @@ const numberInputs = document.querySelectorAll(".number");
 regex.validateNumberCard($numberCard);
 regex.validateCPF($cpf);
 regex.validateTEL($tel);
+regex.validateCEP($cep);
 
 stringInputs.forEach((input) => {
   input.addEventListener("input", () => {

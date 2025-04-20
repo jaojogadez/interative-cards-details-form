@@ -45,6 +45,19 @@ export function validateTEL(input) {
   });
 }
 
+// Função para validar o cep
+export function validateCEP(input) {
+  input.addEventListener("input", () => {
+    setTimeout(() => {
+      let tel = onlyNumbers(input.value).slice(0, 9);
+      tel = tel.replace(/^(\d{5})(\d)/, "$1-$2")
+      input.value = tel;
+      validateInput(input, "cep");
+      console.log(tel.length)
+    });
+  });
+}
+
 
 // Função para deixar somente números
 export function onlyNumbers(value) {
