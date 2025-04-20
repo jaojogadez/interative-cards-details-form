@@ -1,4 +1,4 @@
-import * as regex from "./regex.js";
+import * as regex from "./apply-regex.js";
 import { validateInput } from "./feedback.js";
 
 /* FORM's ELEMENTs INFO*/

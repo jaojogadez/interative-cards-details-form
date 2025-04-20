@@ -1,4 +1,4 @@
-import { onlyNumbers } from "./regex.js";
+import { onlyNumbers } from "./apply-regex.js";
 
 const expectedLengths = {
   cpf: 14,
