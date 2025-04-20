@@ -5,12 +5,13 @@ import { innerCard } from "../card.js";
 // Função validateInput
 import { validateInput } from "./feedback.js";
 
+import * as regex from "../../utils/regex.js";
+
 // Função para o número do cartão
 export function validateNumberCard(input) {
   input.addEventListener("input", () => {
-    const regexNumberCard = /(\d{4})(?=\d)/g;
     const formatNumberCard = input.value
-      .replace(regexNumberCard, "$1 ")
+      .replace(regex.regexNumberCard, "$1 ")
       .slice(0, 19);
     input.value = formatNumberCard;
     validateInput(input, "card");
@@ -23,9 +24,9 @@ export function validateCPF(input) {
   input.addEventListener("input", () => {
     let cpf = onlyNumbers(input.value).slice(0, 14);
     cpf = cpf
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{2})$/, "$1-$2");
+      .replace(regex.regexCPF.start, "$1.$2")
+      .replace(regex.regexCPF.start, "$1.$2")
+      .replace(regex.regexCPF.end, "$1-$2");
     input.value = cpf;
     validateInput(input, "cpf");
   });
@@ -37,8 +38,8 @@ export function validateTEL(input) {
     setTimeout(() => {
       let tel = onlyNumbers(input.value).slice(0, 12);
       tel = tel
-        .replace(/^(\d{2})(\d)/, "($1) $2")
-        .replace(/(\d{5})(\d)/, "$1-$2");
+        .replace(regex.regexTelefone.start, "($1) $2")
+        .replace(regex.regexTelefone.end, "$1-$2");
       input.value = tel;
       validateInput(input, "tel");
     });
@@ -49,9 +50,9 @@ export function validateTEL(input) {
 export function validateCEP(input) {
   input.addEventListener("input", () => {
     setTimeout(() => {
-      let tel = onlyNumbers(input.value).slice(0, 9);
-      tel = tel.replace(/^(\d{5})(\d)/, "$1-$2");
-      input.value = tel;
+      let cep = onlyNumbers(input.value).slice(0, 9);
+      cep = cep.replace(regex.regexCEP, "$1-$2");
+      input.value = cep;
       validateInput(input, "cep");
     });
   });
@@ -66,10 +67,10 @@ export function validateAddressNumberAndCVC(input) {
 
 // Função para deixar somente números
 export function onlyNumbers(value) {
-  return value.replace(/[^0-9.-]/g, "");
+  return value.replace(regex.regexOnlyNumbers, "");
 }
 
 // Função para deixar somente letras
 export function onlyLetters(string) {
-  return string.replace(/[^A-Za-zÀ-ÿ\s]/gu, "");
+  return string.replace(regex.regexOnlyLetters, "");
 }
