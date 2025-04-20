@@ -1,35 +1,24 @@
-/* FORM's ELEMENTs CARD INFO*/
-const $holder = document.querySelector("#cardholder-name");
-const $expMounth = document.querySelector("#cardholder-expdate");
-const $expYear = document.querySelector("#cardholder-mmyy");
-const $cvc = document.querySelector("#cardholder-cvc");
+import * as dom from "../utils/dom-elements.js";
 
-/* CARD's Interative Details */
-export const numberCard = document.getElementById("placeholder-card"); // exporta pra usar em regex.js
-const nameCard = document.getElementById("name");
-let dateCardMM = document.getElementById("dateMM");
-let dateCardYY = document.getElementById("dateYY");
-const cvcCard = document.getElementById("cvc");
-
-numberCard.innerText = "0000 0000 0000 0000";
-nameCard.innerText = "Jane Appleseed";
-dateCardMM.innerText = "00";
-dateCardYY.innerText = "00";
-cvcCard.innerText = "000";
+dom.numberCard.innerText = "0000 0000 0000 0000";
+dom.nameCard.innerText = "Jane Appleseed";
+dom.dateCardMM.innerText = "00";
+dom.dateCardYY.innerText = "00";
+dom.cvcCard.innerText = "000";
 
 let innerCard = (card, input) => {
   card.innerText = input.value;
 };
 
-$holder.oninput = () => {
-  innerCard(nameCard, $holder);
+dom.$holder.oninput = () => {
+  innerCard(dom.nameCard, dom.$holder);
 };
 
-$cvc.oninput = () => {
-  innerCard(cvcCard, $cvc);
+dom.$cvc.oninput = () => {
+  innerCard(dom.cvcCard, dom.$cvc);
 };
 
-$expMounth.addEventListener("input", () => innerCard(dateCardMM, $expMounth));
-$expYear.addEventListener("input", () => innerCard(dateCardYY, $expYear));
+dom.$expMounth.addEventListener("input", () => innerCard(dateCardMM, dom.$expMounth));
+dom.$expYear.addEventListener("input", () => innerCard(dateCardYY, dom.$expYear));
 
 export { innerCard };

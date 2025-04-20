@@ -18,6 +18,13 @@ const $expMounth = document.querySelector("#cardholder-expdate");
 const $expYear = document.querySelector("#cardholder-mmyy");
 const $cvc = document.querySelector("#cardholder-cvc");
 
+/* CARD's ELEMENTS */
+const numberCard = document.getElementById("placeholder-card");
+const nameCard = document.getElementById("name");
+const dateCardMM = document.getElementById("dateMM");
+const dateCardYY = document.getElementById("dateYY");
+const cvcCard = document.getElementById("cvc");
+
 export {
   $name,
   $cpf,
@@ -32,5 +39,10 @@ export {
   $cvc,
   $form,
   $formComplete,
-  $productContainer
+  $productContainer,
+  numberCard,
+  nameCard,
+  dateCardMM,
+  dateCardYY,
+  cvcCard
 };

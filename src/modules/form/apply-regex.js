@@ -1,5 +1,5 @@
 // Importa elemento e função para interar com o numberCard
-import { numberCard } from "../card.js";
+import { numberCard } from "../../utils/dom-elements.js";
 import { innerCard } from "../card.js";
 
 // Função validateInput
