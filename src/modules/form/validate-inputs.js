@@ -9,13 +9,15 @@ const $cvc = document.querySelector("#cardholder-cvc");
 
 const $numberCard = document.querySelector("#cardholder-number");
 const $cpf = document.querySelector("#cpf");
+const $tel = document.querySelector("#tel");
+const $cep = document.querySelector("#cep");
 
 const stringInputs = document.querySelectorAll(".string");
 const numberInputs = document.querySelectorAll(".number");
 
 regex.validateNumberCard($numberCard);
-regex.validateCPF($cpf)
-console.log($cpf)
+regex.validateCPF($cpf);
+regex.validateTEL($tel);
 
 stringInputs.forEach((input) => {
   input.addEventListener("input", () => {

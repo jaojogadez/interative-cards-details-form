@@ -125,14 +125,14 @@ const rules = {
   },
 };
 
-$tel.addEventListener("input", () => {
-  let formatedTel = $tel.value
-    .slice(0, 11)
-    .replace(/^(\d{2})(\d)/, "($1) $2")
-    .replace(/(\d{5})(\d)/, "$1 $2");
-  $tel.value = formatedTel;
-  validateInput($tel, "tel");
-});
+// $tel.addEventListener("input", () => {
+//   let formatedTel = $tel.value
+//     .slice(0, 11)
+//     .replace(/^(\d{2})(\d)/, "($1) $2")
+//     .replace(/(\d{5})(\d)/, "$1 $2");
+//   $tel.value = formatedTel;
+//   validateInput($tel, "tel");
+// });
 
 $cep.addEventListener("input", () => {
   let formatedCep = $cep.value.slice(0, 8).replace(/^(\d{5})(\d)/, "$1-$2");

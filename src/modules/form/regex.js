@@ -21,7 +21,6 @@ export function validateNumberCard(input) {
 // Função para validar o CPF
 export function validateCPF(input) {
   input.addEventListener("input", () => {
-    // Remove tudo que não é número
     let cpf = onlyNumbers(input.value).slice(0, 11);
     cpf = cpf
       .replace(/(\d{3})(\d)/, "$1.$2")
@@ -29,13 +28,27 @@ export function validateCPF(input) {
       .replace(/(\d{3})(\d{2})$/, "$1-$2");
     input.value = cpf;
     validateInput(input, "cpf");
-    console.log(input.value);
   });
 }
 
+// Função para validar o telefone
+export function validateTEL(input) {
+  input.addEventListener("input", () => {
+    setTimeout(() => {
+      let tel = onlyNumbers(input.value).slice(0, 12);
+      tel = tel
+        .replace(/^(\d{2})(\d)/, "($1) $2")
+        .replace(/(\d{5})(\d)/, "$1-$2");
+      input.value = tel;
+      validateInput(input, "tel");
+    });
+  });
+}
+
+
 // Função para deixar somente números
 export function onlyNumbers(value) {
-  return value.replace(/\D/g, "");
+  return value.replace(/[^0-9.-]/g, "");
 }
 
 // Função para deixar somente letras

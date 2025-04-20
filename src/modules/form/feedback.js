@@ -2,7 +2,7 @@ import { onlyNumbers } from "./regex.js";
 
 const expectedLengths = {
   cpf: 11,
-  tel: 11,
+  tel: 12,
   cep: 8,
   num: 3,
   minLetters: 10,
