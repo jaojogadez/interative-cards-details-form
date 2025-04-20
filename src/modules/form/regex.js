@@ -21,11 +21,10 @@ export function validateNumberCard(input) {
 // Função para validar o CPF
 export function validateCPF(input) {
   input.addEventListener("input", () => {
-    let cpf = onlyNumbers(input.value).slice(0, 11);
-    cpf = cpf
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d)/, "$1.$2")
-      .replace(/(\d{3})(\d{2})$/, "$1-$2");
+    let cpf = onlyNumbers(input.value).slice(0, 14);
+    cpf = cpf.replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d)/, "$1.$2")
+    .replace(/(\d{3})(\d{2})$/, "$1-$2");
     input.value = cpf;
     validateInput(input, "cpf");
   });
@@ -53,11 +52,9 @@ export function validateCEP(input) {
       tel = tel.replace(/^(\d{5})(\d)/, "$1-$2")
       input.value = tel;
       validateInput(input, "cep");
-      console.log(tel.length)
     });
   });
 }
-
 
 // Função para deixar somente números
 export function onlyNumbers(value) {

@@ -6,3 +6,4 @@ import "./modules/timer.js";
 import "./modules/discount.js";
 import "./modules/card.js";
 import "./modules/form/validate-inputs.js";
+import "./modules/form/validate-form.js";

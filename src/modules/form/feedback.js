@@ -1,7 +1,7 @@
 import { onlyNumbers } from "./regex.js";
 
 const expectedLengths = {
-  cpf: 11,
+  cpf: 14,
   tel: 12,
   cep: 9,
   num: 3,
@@ -19,7 +19,6 @@ export function validateInput(input, type, cond){
     isValid = value.length > requireLenght;
   } else {
     isValid = value.length === requireLenght;
-    console.log(value.length)
   }
 
   const validFeedback = input.nextElementSibling;
