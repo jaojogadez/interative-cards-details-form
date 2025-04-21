@@ -18,12 +18,21 @@ html,
 body {
   font: normal normal 18px var(--secondary-font);
   overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+.container-fluid.p-0.d-flex.align-items-center.justify-content-center {
+  background-color: white;
+  position: relative;
+  z-index: 1;
 }
 #productName h3 {
   color: var(--Verydark);
 }
 .alert {
   box-shadow: 7px 7px 7px rgba(255, 0, 0, 0.45);
+  position: fixed;
+  z-index: 9999;
 }
 .invalid-feedback {
   font-size: 0.8em;
@@ -43,8 +52,10 @@ body {
 #card-container {
   position: relative;
   background: black url("../images/bg-main-mobile.png") no-repeat;
+  background-attachment: fixed;
   min-height: 40vh;
   background-size: cover;
+  border: 1px solid purple;
 }
 #aligment-cards {
   text-align: center;
@@ -222,17 +233,33 @@ h1 {
 }
 @media (min-width: 768px) {
   #card-container {
+    position: fixed;
+    top: 0;
+    left: 0;
     background: black url("../images/bg-main-desktop.png") repeat;
     background-size: cover;
-    min-height: 100vh !important;
-    height: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 0;
+  }
+  .col-md-8 {
+    margin-left: 33.33%;
+    padding-left: 2rem;
+    position: relative;
+    z-index: 1;
+    background-color: white;
+    min-height: 100vh;
+  }
+  .row.align-items-center.gx-5.w-100 {
+    margin-left: 0;
+    margin-right: 0;
   }
   #aligment-cards {
     position: absolute;
-    gap: 20px;
     top: 50%;
-
-    transform: translate(20%, -120%);
+    left: 50%;
+    transform: translate(-25%, -90%);
+    width: 80%;
   }
   #front-card {
     top: -20%;
